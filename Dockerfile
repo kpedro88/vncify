@@ -1,4 +1,6 @@
-FROM cmsopendata/cmssw_5_3_32
+ARG IMAGEBASE
+
+FROM ${IMAGEBASE}
 
 USER root
 ADD scripts/vnc_utils.sh /usr/local/vnc_utils.sh
