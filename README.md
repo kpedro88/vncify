@@ -14,6 +14,7 @@ In the above command, replace `[image]` with the name of the base image you want
 
 <details>
 <summary>More generic command:</summary>
+
 ```bash
 cd vncify
 docker build -t [name]:[version] --build-arg IMAGEBASE=[base_name]:[base_version] .
@@ -26,15 +27,12 @@ where `[name]`, `[version]`, `[base_name]`, `[base_version]` can all be specifie
 ```bash
 docker run -P -p 5901:5901 -p 6080:6080 ... [image]_vnc:1.0
 ```
-where ... is the rest of your usual `docker run` command.
+where `...` is the rest of your usual `docker run` command.
 (Optionally, a command to run inside the container like `/bin/bash` can be appended to this command.)
 
 ## Use VNC
 
-To launch a VNC server:
-```bash
-start_vnc
-```
+To launch a VNC server, run this command: `start_vnc`
 
 (For verbose output, use `startvnc verbose`.)
 
@@ -58,14 +56,14 @@ You will not need to do this if using the browser.
 
 There are two additional helper functions:
 
-* `stop_vnc`: Kills all of the running vnc servers and the noVNC+WebSockify instance
-* `clean_vnc`: In additional to running stop_vnc, this will clear all of the temporary files associated with the previous vnc servers
+* `stop_vnc`: kill all of the running vnc servers and the noVNC+WebSockify instance
+* `clean_vnc`: run `stop_vnc` and clear all temporary files associated with the previous vnc servers
 
 If you'd like more manual control you can use the following commands:
 
-* `vncserver -list`: Will list the available VNC servers running on the remote machine.
-* `vncserver -kill :1`: Will kill a currently running VNC server using. `:1` is the "X DISPLAY #".
-* `pkill -9 -P <process>`: Will kill the noVNC+WebSockify process if you use the PID given when running `start_vnc` or when starting manually.
+* `vncserver -list`: list the available VNC servers running on the remote machine.
+* `vncserver -kill :1`: kill a currently running VNC server using. `:1` is the "X DISPLAY #".
+* `pkill -9 -P <process>`: kill the noVNC+WebSockify process if you use the PID given when running `start_vnc` or when starting manually.
 
 ## Compatibility
 
