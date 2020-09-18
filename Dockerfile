@@ -1,7 +1,7 @@
 ARG IMAGEBASE
-ARG USERNAME=cmsusr
-
 FROM ${IMAGEBASE}
+
+ARG USERNAME=cmsusr
 
 USER root
 ADD scripts/vnc_utils.sh /usr/local/vnc_utils.sh
