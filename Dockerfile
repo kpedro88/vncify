@@ -24,3 +24,5 @@ USER cmsusr
 WORKDIR /home/cmsusr
 RUN mkdir -p /home/cmsusr/.vnc
 ADD scripts/xstartup /home/cmsusr/.vnc/xstartup
+
+ENV GEOMETRY 1920x1080
