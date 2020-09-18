@@ -2,6 +2,7 @@ ARG IMAGEBASE
 FROM ${IMAGEBASE}
 
 ARG USERNAME=cmsusr
+ARG GETPYTHON
 
 USER root
 ADD scripts/vnc_utils.sh /usr/local/vnc_utils.sh
@@ -20,6 +21,10 @@ RUN wget --no-check-certificate --content-disposition -O /usr/local/novnc-noVNC-
     && ln -s /usr/local/novnc-noVNC-0e9bdff /usr/local/novnc \
     && git clone https://github.com/novnc/websockify /usr/local/novnc/utils/websockify
 RUN echo "source /usr/local/vnc_utils.sh" >> /home/cmsusr/.bashrc
+
+# install python 2.7 if requested
+COPY scripts/check_python_27.sh /tmp/
+RUN chmod +x /tmp/check_python_27.sh && /tmp/check_python_27.sh ${GETPYTHON}
 
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}

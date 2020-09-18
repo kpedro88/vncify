@@ -15,6 +15,9 @@ In the above command, replace `[image]` with the name of the base image you want
 The default username is assumed to be `cmsusr`. This can be changed by adding the following to the above command:
 `--build-arg USERNAME=[user]`.
 
+If Python 2.7 is not available in the base image, browser usage of VNC will fail. This can be avoided by enabling a standalone Python 2.7 installation:
+`--build-arg GETPYTHON=true`.
+
 <details>
 <summary>More generic command:</summary>
 
@@ -73,4 +76,4 @@ If you'd like more manual control you can use the following commands:
 The Dockerfile is based on RHEL Linux distributions.
 
 WebSockify only works correctly with Python 2.7 or higher. Images with older Python versions will not support the "web browser" view.
-(Traditional VNC viewers can still be used.)
+(Traditional VNC viewers can still be used, or Python 2.7 can be installed in the image as indicated previously.)
