@@ -1,4 +1,5 @@
 ARG IMAGEBASE
+ARG USERNAME=cmsusr
 
 FROM ${IMAGEBASE}
 
@@ -20,9 +21,9 @@ RUN wget --no-check-certificate --content-disposition -O /usr/local/novnc-noVNC-
     && git clone https://github.com/novnc/websockify /usr/local/novnc/utils/websockify
 RUN echo "source /usr/local/vnc_utils.sh" >> /home/cmsusr/.bashrc
 
-USER cmsusr
-WORKDIR /home/cmsusr
-RUN mkdir -p /home/cmsusr/.vnc
-ADD scripts/xstartup /home/cmsusr/.vnc/xstartup
+USER ${USERNAME}
+WORKDIR /home/${USERNAME}
+RUN mkdir -p /home/${USERNAME}/.vnc
+ADD scripts/xstartup /home/${USERNAME}/.vnc/xstartup
 
 ENV GEOMETRY 1920x1080

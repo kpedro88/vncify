@@ -12,6 +12,9 @@ docker build -t [image]_vnc:1.0 --build-arg IMAGEBASE=[image] .
 
 In the above command, replace `[image]` with the name of the base image you want to use.
 
+The default username is assumed to be `cmsusr`. This can be changed by adding the following to the above command:
+`--build-arg USERNAME=[user]`.
+
 <details>
 <summary>More generic command:</summary>
 
