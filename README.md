@@ -40,7 +40,7 @@ where `...` is the rest of your usual `docker run` command.
 
 To launch a VNC server, run this command: `start_vnc`
 
-(For verbose output, use `startvnc verbose`.)
+(For verbose output, use `start_vnc verbose`.)
 
 The first time you start a server, or after a cleanup, you will be asked to setup a password. It must be at least six characters in length.
 
