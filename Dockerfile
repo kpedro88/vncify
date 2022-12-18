@@ -7,6 +7,9 @@ ARG GETPYTHON
 USER root
 ADD scripts/vnc_utils.sh /usr/local/vnc_utils.sh
 
+# avoids: Curl error (60): Peer certificate cannot be authenticated with given CA certificates for ... [SSL certificate problem: unable to get local issuer certificate]
+RUN for REPO in mc-extras-x86-64 root-c17-noarch root-c17-x86-64; do yum-config-manager --save --setopt=${REPO}.sslverify=false; done
+
 # install tigervnc server
 RUN yum install -y tigervnc-server fluxbox xterm \
  && yum clean all \
