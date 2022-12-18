@@ -20,7 +20,6 @@ RUN wget --no-check-certificate --content-disposition -O /usr/local/novnc-noVNC-
     && rm /usr/local/novnc-noVNC-v1.1.0-0-g9fe2fd0.tar.gz \
     && ln -s /usr/local/novnc-noVNC-0e9bdff /usr/local/novnc \
     && git clone https://github.com/novnc/websockify /usr/local/novnc/utils/websockify
-RUN echo "source /usr/local/vnc_utils.sh" >> /home/cmsusr/.bashrc
 
 # install python 2.7 if requested
 COPY scripts/check_python_27.sh /tmp/
@@ -30,5 +29,6 @@ USER ${USERNAME}
 WORKDIR /home/${USERNAME}
 RUN mkdir -p /home/${USERNAME}/.vnc
 ADD scripts/xstartup /home/${USERNAME}/.vnc/xstartup
+RUN echo "source /usr/local/vnc_utils.sh" >> /home/${USERNAME}/.bashrc
 
 ENV GEOMETRY 1920x1080
