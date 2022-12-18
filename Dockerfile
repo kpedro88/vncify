@@ -25,6 +25,9 @@ RUN wget --no-check-certificate --content-disposition -O /usr/local/novnc-noVNC-
 COPY scripts/check_python_27.sh /tmp/
 RUN chmod +x /tmp/check_python_27.sh && /tmp/check_python_27.sh ${GETPYTHON}
 
+# set up user
+RUN if ! id ${USERNAME}; then groupadd ${USERNAME}; useradd -m -s /bin/bash -g ${USERNAME} ${USERNAME}; fi
+
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
 RUN mkdir -p /home/${USERNAME}/.vnc
