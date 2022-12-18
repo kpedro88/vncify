@@ -11,6 +11,9 @@ ADD scripts/vnc_utils.sh /usr/local/vnc_utils.sh
 RUN for REPO in mc-extras-x86-64 root-c17-noarch root-c17-x86-64; do yum-config-manager --save --setopt=${REPO}.sslverify=false; done
 
 # install tigervnc server
+RUN cd /etc/yum.repos.d/ \
+    && sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* \
+    && sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
 RUN yum install -y tigervnc-server fluxbox xterm \
  && yum clean all \
  && rm -rf /tmp/.X*
